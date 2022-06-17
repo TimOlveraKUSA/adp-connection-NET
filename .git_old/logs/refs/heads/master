@@ -1,3 +1,0 @@
-0000000000000000000000000000000000000000 371b8fdabfb17bef13706235774e579369497a60 Tim Olvera <timolvera@kalleusa.com> 1615258773 -0600	clone: from https://github.com/adplabs/adp-connection-NET.git
-371b8fdabfb17bef13706235774e579369497a60 40e10b643f50136b935615774ee251093ace2347 Tim Olvera <timolvera@kalleusa.com> 1618452406 -0500	commit: Add TLS to fix protocol errors
-40e10b643f50136b935615774ee251093ace2347 a30f34f40ff6b06f1b98df504cc12d9eb4285430 Tim Olvera <tim.olvera@kallegroup.com> 1655410764 -0500	revert: Revert "Add TLS to fix protocol errors"
