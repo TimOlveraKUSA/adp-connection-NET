@@ -1,0 +1,81 @@
+﻿@using ADPClient;
+@{
+    ViewBag.Title = "Home Page";
+    AuthorizationCodeConnection connection = (AuthorizationCodeConnection)Session["AuthorizationCodeConnection"];
+    string authorizationcode = (connection == null) ? "" : ((AuthorizationCodeConfiguration)connection.connectionConfiguration).authorizationCode;
+    ADPAccessToken token = ((connection == null) ? null : connection.accessToken);
+    string disabledgettoken = ((connection == null) ? "disabled=disabled" : "");
+    string disabledgetdata = ((token == null) ? "disabled=disabled" : "");
+}
+
+
+
+@if (connection == null)
+{
+    <h4><a href="/marketplace/Authorize">Login</a></h4>
+}
+else {
+    <h4><a href="/marketplace/Logout">Logout</a></h4>
+    <p>
+        <h5>Authentication code: @authorizationcode </h5>
+
+        @if (token != null)
+        {
+            <h5>Token:</h5>
+            <h5>
+<pre>
+Connected to API end point
+Token:  
+         AccessToken: @token.AccessToken
+         TokenType:   @token.TokenType
+         ExpiresIn:   @token.ExpiresIn
+         Scope:       @token.Scope
+</pre>
+            </h5>
+        }
+        else
+        {
+            using (Html.BeginForm("getToken", "marketplace", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <button @disabledgettoken type="submit" class="btn btn-primary" style="display:inline-block;">Get Token</button>@:&nbsp;&nbsp;&nbsp;
+            }
+        }
+    </p>
+}
+
+
+<!--
+@using (Html.BeginForm("getData", "marketplace", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <button @disabledgetdata type="submit" class="btn btn-primary" style="display:inline-block;">Get Data</button>@:&nbsp;&nbsp;&nbsp;
+}
+-->
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr class="success">
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+
+    <tfoot>
+        @if (ViewBag.IsError == true)
+            {
+            <tr>
+                <td colspan="6">
+                    <div class="alert alert-danger" role="alert">An error occurred while retrieving data from the server. Please try again.<p>@ViewBag.Message</p></div>
+                </td>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td colspan="6">
+                    <div class="alert alert-info" role="alert"><p>@ViewBag.Message</p></div>
+                </td>
+            </tr>
+        }
+    </tfoot>
+
+    <tbody></tbody>
+</table>

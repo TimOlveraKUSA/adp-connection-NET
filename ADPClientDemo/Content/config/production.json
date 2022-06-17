@@ -1,0 +1,13 @@
+{
+  "clientID": "[enter production clientID here]",
+  "clientSecret": "[enter production clientSecret here]",
+  "sslCertPath": "[enter path to pfx file created during CSR process]",
+  "sslKeyPath": "[enter path to key file created during the CSR process]",
+  "sslKeyPass": "[enter password used when cerating pfx or make blank if no password]",
+  "tokenServerURL": "https://api.adp.com/auth/oauth/v2/token",
+  "disconnectURL": "https://accounts.adp.com/auth/oauth/v2/logout",
+  "apiRequestURL": "https://api.adp.com",
+  "responseType": "code",
+  "defaultexpiration": 3600,
+  "grantType": "client_credentials"
+}
